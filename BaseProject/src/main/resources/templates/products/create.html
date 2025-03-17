@@ -1,0 +1,18 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="content">
+  <h2 th:text="#{product.create}">Create New Product</h2>
+  <form th:action="@{/products(lang=${#locale.language})}" th:object="${product}" method="post">
+    <div class="mb-3">
+      <label for="name" class="form-label" th:text="#{product.name}">Name:</label>
+      <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter product name" />
+      <small class="text-danger" th:errors="*{name}"></small>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label" th:text="#{product.price}">Price:</label>
+      <input type="number" id="price" th:field="*{price}" class="form-control" step="0.01"
+        placeholder="Enter product price" />
+      <small class="text-danger" th:errors="*{price}"></small>
+    </div>
+    <button type="submit" class="btn btn-success" th:text="#{product.save}">Save</button>
+    <a class="btn btn-secondary" th:href="@{/products(lang=${#locale.language})}" th:text="#{product.cancel}">Cancel</a>
+  </form>
+</div>

@@ -1,0 +1,5 @@
+package com.poly.demo.bean;
+
+public class Product {
+
+}

@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "student")
+@Table(name = "students")
 @Entity
 @Data
 @NoArgsConstructor
@@ -18,8 +18,10 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String code;
-    private String name;
+    private String fullname;
+    private String email;
+    private Boolean gender = true;
 
 }

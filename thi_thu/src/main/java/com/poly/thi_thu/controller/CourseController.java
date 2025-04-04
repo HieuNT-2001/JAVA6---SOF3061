@@ -42,7 +42,7 @@ public class CourseController {
 
             return new ResponseEntity<>(items, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -63,7 +63,7 @@ public class CourseController {
             Course savedItem = this.courseService.save(item);
             return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
 

@@ -1,6 +1,5 @@
 package com.poly.thi_thu.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,7 @@ public class StudentController {
 
             return new ResponseEntity<>(items, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -65,7 +64,7 @@ public class StudentController {
             Student savedItem = this.studentService.save(item);
             return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
 

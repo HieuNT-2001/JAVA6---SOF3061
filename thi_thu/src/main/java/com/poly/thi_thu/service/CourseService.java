@@ -1,11 +1,10 @@
 package com.poly.thi_thu.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 
 import com.poly.thi_thu.model.Course;
 import com.poly.thi_thu.repository.CourseRepository;
@@ -19,9 +18,8 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    public List<Course> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return this.courseRepository.findAll(pageable).getContent();
+    public Page<Course> findAll(Pageable pageable) {
+        return this.courseRepository.findAll(pageable);
     }
 
     public Optional<Course> findById(int id) {

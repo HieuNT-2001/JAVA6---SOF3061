@@ -1,9 +1,8 @@
 package com.poly.thi_thu.service;
 
-import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +18,8 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return this.studentRepository.findAll(pageable).getContent();
+    public Page<Student> findAll(Pageable pageable) {
+        return this.studentRepository.findAll(pageable);
     }
 
     public Optional<Student> findById(int id) {

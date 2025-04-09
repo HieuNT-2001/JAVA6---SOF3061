@@ -32,7 +32,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Tắt CSRF (Cross-Site Request Forgery) cho đơn giản
                 .authorizeHttpRequests(auth -> auth // Cấu hình phân quyền cho các request
-                        // Cho phép GET cho tất cả
+                        // Cho phép GET cho tất cả (bao gồm cả chưa đăng nhập)
                         .requestMatchers(HttpMethod.GET, "/courses/**", "/students/**").permitAll()
                         // Chỉ ADMIN mới được POST
                         .requestMatchers(HttpMethod.POST, "/courses/**", "/students/**").hasRole("ADMIN")
@@ -40,8 +40,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/courses/**", "/students/**").hasRole("ADMIN")
                         // Chỉ ADMIN mới được DELETE
                         .requestMatchers(HttpMethod.DELETE, "/courses/**", "/students/**").hasRole("ADMIN")
-                        // .requestMatchers("/**").permitAll() // Cho phép tất cả các request khác
-                        // .requestMatchers("/**").denyAll() // Từ chối tất cả các request khác
                         .anyRequest().authenticated()) // Tất cả các request khác đều cần xác thực
                 .formLogin(Customizer.withDefaults()) // Sử dụng form login mặc định
                 .httpBasic(Customizer.withDefaults()); // Sử dụng http basic authentication mặc định

@@ -1,9 +1,11 @@
 package com.poly.thi_thu.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,11 +32,12 @@ public class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Course>> getAll(
+    public ResponseEntity<Page<Course>> getAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
         try {
-            List<Course> items = this.courseService.findAll(page - 1, size);
+            Pageable pageable = PageRequest.of(page - 1, size);
+            Page<Course> items = this.courseService.findAll(pageable);
 
             if (items.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

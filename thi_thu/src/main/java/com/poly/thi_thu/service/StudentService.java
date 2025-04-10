@@ -1,5 +1,7 @@
 package com.poly.thi_thu.service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -16,6 +18,10 @@ public class StudentService {
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
+    }
+
+    public List<Map<String, Object>> findAlltWithCourse() {
+        return this.studentRepository.findAlltWithCourse();
     }
 
     public Page<Student> findAll(Pageable pageable) {

@@ -1,5 +1,7 @@
 package com.poly.thi_thu.controller;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -31,11 +33,24 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @GetMapping("/with-course")
+    public ResponseEntity<List<Map<String, Object>>> getAllWithCourse() {
+        try {
+            List<Map<String, Object>> items = this.studentService.findAlltWithCourse();
+
+            if (items.isEmpty())
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<>(items, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping
     public ResponseEntity<Page<Student>> getAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
-
         try {
             Pageable pageable = PageRequest.of(page - 1, size);
             Page<Student> items = this.studentService.findAll(pageable);

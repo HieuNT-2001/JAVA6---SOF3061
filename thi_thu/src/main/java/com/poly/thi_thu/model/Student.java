@@ -1,11 +1,20 @@
 package com.poly.thi_thu.model;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,5 +37,33 @@ public class Student {
     @NotBlank(message = "Full name is required")
     @NotNull(message = "Full name is required")
     private String fullname;
+
+    @Column(name = "NgaySinh")
+    @NotNull(message = "Date of birth is required")
+    @Temporal(TemporalType.DATE)
+    private Date birthDay;
+
+    @Column(name = "GioiTinh")
+    private Boolean gender;
+
+    @Column(name = "Email")
+    @NotBlank(message = "Email is required")
+    @NotNull(message = "Email is required")
+    private String email;
+
+    @Column(name = "SoDienThoai")
+    @NotBlank(message = "Phone number is required")
+    @NotNull(message = "Phone number is required")
+    private String phoneNumber;
+
+    @Column(name = "DiaChi")
+    @NotBlank(message = "Address is required")
+    @NotNull(message = "Address is required")
+    private String address;
+
+    @ManyToOne(fetch = FetchType.LAZY) // Lazy loading để tối ưu hóa hiệu suất
+    @JoinColumn(name = "MaKhoaHoc") // Khóa ngoại tham chiếu đến bảng KhoaHoc
+    @JsonIgnore // Bỏ qua trường này khi trả về JSON
+    private Course course; // Khóa học mà học viên tham gia
 
 }

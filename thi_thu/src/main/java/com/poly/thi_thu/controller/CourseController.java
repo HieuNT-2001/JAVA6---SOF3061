@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,7 +62,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<Course> create(@RequestBody Course item) {
+    public ResponseEntity<Course> create(@RequestBody @Validated Course item) {
         try {
             Course savedItem = this.courseService.save(item);
             return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
@@ -71,7 +72,7 @@ public class CourseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Course> update(@PathVariable("id") int id, @RequestBody Course item) {
+    public ResponseEntity<Course> update(@PathVariable("id") int id, @RequestBody @Validated Course item) {
         Optional<Course> existingItemOptional = this.courseService.findById(id);
         if (existingItemOptional.isPresent()) {
             Course existingItem = existingItemOptional.get();

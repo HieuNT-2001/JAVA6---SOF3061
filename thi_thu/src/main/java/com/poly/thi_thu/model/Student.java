@@ -2,8 +2,6 @@ package com.poly.thi_thu.model;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -61,9 +59,8 @@ public class Student {
     @NotNull(message = "Address is required")
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Lazy loading để tối ưu hóa hiệu suất
+    @ManyToOne()
     @JoinColumn(name = "MaKhoaHoc") // Khóa ngoại tham chiếu đến bảng KhoaHoc
-    @JsonIgnore // Bỏ qua trường này khi trả về JSON
     private Course course; // Khóa học mà học viên tham gia
 
 }

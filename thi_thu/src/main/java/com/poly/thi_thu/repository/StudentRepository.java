@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.poly.thi_thu.model.Student;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Integer> {
+public interface StudentRepository extends JpaRepository<Student, Long> {
     // Custom query methods can be defined here if needed
     @Query(value = "SELECT c.MaKhoaHoc, c.TenKhoaHoc, c.MoTa, c.NgayBatDau, c.NgayKetThuc, s.MaHocVien, s.TenHocVien "
             + "FROM HocVien s "
             + "JOIN KhoaHoc c "
             + "ON c.MaKHoaHoc = s.MaKHoaHoc ", nativeQuery = true)
-    List<Map<String, Object>> findAlltWithCourse();
+    List<Map<String, Object>> getAllWithCourse();
 }

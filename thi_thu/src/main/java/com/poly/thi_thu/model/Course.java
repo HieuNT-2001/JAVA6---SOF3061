@@ -31,7 +31,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaKhoaHoc")
-    private int id;
+    private long id;
 
     @Column(name = "TenKhoaHoc")
     @NotBlank(message = "Course name is required")

@@ -20,15 +20,15 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Map<String, Object>> findAlltWithCourse() {
-        return this.studentRepository.findAlltWithCourse();
+    public List<Map<String, Object>> getAllWithCourse() {
+        return this.studentRepository.getAllWithCourse();
     }
 
     public Page<Student> findAll(Pageable pageable) {
         return this.studentRepository.findAll(pageable);
     }
 
-    public Optional<Student> findById(int id) {
+    public Optional<Student> findById(long id) {
         return this.studentRepository.findById(id);
     }
 
@@ -36,7 +36,7 @@ public class StudentService {
         return this.studentRepository.save(student);
     }
 
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         this.studentRepository.deleteById(id);
     }
 

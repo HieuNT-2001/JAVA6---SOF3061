@@ -28,7 +28,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MaHocVien")
-    private int id;
+    private long id;
 
     @Column(name = "TenHocVien")
     @NotBlank(message = "Full name is required")

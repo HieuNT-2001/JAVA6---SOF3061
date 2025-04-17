@@ -22,7 +22,7 @@ public class CourseService {
         return this.courseRepository.findAll(pageable);
     }
 
-    public Optional<Course> findById(int id) {
+    public Optional<Course> findById(long id) {
         return this.courseRepository.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class CourseService {
         return this.courseRepository.save(course);
     }
 
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         this.courseRepository.deleteById(id);
     }
 
